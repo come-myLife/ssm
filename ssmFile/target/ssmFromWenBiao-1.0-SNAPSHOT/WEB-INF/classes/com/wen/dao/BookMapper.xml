@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wen.dao.BookMapper">
+
+    <insert id="addBook" parameterType="Books">
+        insert into ssmbuild.books(bookName,bookCounts,detail)
+        values (#{bookName},#{bookCounts},#{detail})
+    </insert>
+
+    <delete id="deleteBookById" parameterType="int">
+        delete from ssmbuild.books where bookID = #{bookId}
+    </delete>
+    <delete id="deleteID">
+        ALTER TABLE ssmbuild.books AUTO_INCREMENT = 1
+    </delete>
+
+    <update id="updateBook" parameterType="Books">
+        update ssmbuild.books set bookName = #{bookName},bookCounts = #{bookCounts},detail=#{detail}
+        where bookID = #{bookId}
+    </update>
+
+    <select id="queryBookById" resultType="Books">
+        select * from ssmbuild.books where bookID = #{bookId}
+    </select>
+
+    <select id="queryBookCount"  resultType="int">
+        select count(*) from ssmbuild.books
+    </select>
+
+    <select id="queryAllBook" resultType="com.wen.pojo.Books">
+       select * from ssmbuild.books
+    </select>
+
+    <select id="queryBookByName"  resultType="Books">
+        select * from ssmbuild.books where bookName=#{bookName}
+    </select>
+
+    <select id="queryBookByHhName"  resultType="Books">
+        select * from ssmbuild.books
+        <where>
+            <if test="bookName != null and bookName != ''">
+                bookName like concat('%',#{bookName},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="queryBookCountByName"  resultType="int">
+        select count(*) from ssmbuild.books
+         where bookName like "%"#{bookName}"%";
+    </select>
+
+</mapper>
