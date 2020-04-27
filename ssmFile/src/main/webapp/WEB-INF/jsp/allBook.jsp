@@ -123,13 +123,9 @@
             </div>
             </c:if>
             <div style="margin:auto 0">
-
-                <h1>${page.}</h1>
                 <div style="position: relative;top: 50px;left: 500px">
                     <a class="btn btn-primary" href="${pageContext.request.contextPath}/book/allBook?pageNum=${page.navigateFirstPage}">首页</a>
-                    <c:if test="${page.pageNum>1
-
-                    }">
+                    <c:if test="${page.pageNum>1}">
                         <a class="btn btn-primary" href="${pageContext.request.contextPath}/book/allBook?pageNum=${page.prePage}">上一页</a>
                     </c:if>
                     <c:if test="${page.pageNum<page.nextPage}">
